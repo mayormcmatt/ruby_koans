@@ -14,6 +14,17 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
+  raise TriangleError if [a, b, c].min <= 0
+
+hyp = [a,b,c].max
+  array = [a,b,c]
+  array.delete hyp
+  if array.size > 1
+    if (array[0] + array[1]) <= hyp
+      raise TriangleError, "Failed triangle side length sanity check"
+    end
+  end
+
   if a == b && b == c
     :equilateral
   elsif a == b || b == c || a ==c
